@@ -1,0 +1,93 @@
+Hello
+
+I build web applications, mostly ruby, mostly for startups
+
+First a show of hands
+How many of you build "single page applications"?
+
+I have only expiremented with what I am about to show you and I have only done it using "single page applications" so it's up to you to decide how applicable it is to your use cases.
+
+So, the asset pipeline
+
+The asset pipeline was created to solve some problems we all had a few years back.
+
+The Problems
+- compressing JS and CSS
+- compiling SASS and Coffeescript
+- combining JS and CSS source files
+
+Before the asset pipeline I had built my own tools to take care of file concatenation and compression
+https://www.evernote.com/shard/s25/sh/faaad4ca-10da-44ab-b91a-97d6a626b5d6/8b99da2391117fb5b9849c7999fd424c/deep/0/Screen-Shot-2014-02-06-at-4.41.23-PM.png
+
+https://www.evernote.com/shard/s25/sh/cd24400e-77f4-49a7-aae1-9a5f07255e4b/e987a130165b75fd8ee7336b7c061bfd/deep/0/Screen-Shot-2014-02-06-at-4.41.19-PM.png
+
+So I was and am pretty invested in the Asset Pipeline.
+
+I like the asset pipeline. It has saved me countless hours in the past. 
+
+This isn't talk against the asset pipeline. It is more a talk about cargo culting.
+
+Just because the rails core team added the asset pipeline doesn't mean it is the best tool for the job. Just like some people use Data Mapper or Mongoid or Presenters instead of helper methods.
+
+In the time since the asset pipeline was created, there have been some pretty neat solutions to the problems the asset pipeline attempts to solve.
+
+## Yeoman
+http://yeoman.io/assets/img/yeoman-horizontal.b2ee.gif
+
+http://gruntjs.com/img/grunt-logo.svg
+
+http://bower.io/img/bower-logo.png
+
+I just gave a talk at viennajs about yeoman.
+It combines bower which is like ruby gems for front end libraries, JS, CSS, etc with Grunt which is kind of like Rake or Thor combined with Guard. It also adds a generator layer which one of the things that brought a lot of us to Rails in the first place.
+
+It allows you to build and iterate on front end heavy web applications with ease, watching for changes, and running tasks you set up when those changes happen.
+
+comparison table
+https://www.evernote.com/shard/s25/sh/3e85e553-34de-46d7-ad8f-e5b616d6958f/268e256ef8ae3f018c533f7dfad042b0/deep/0/design-and-JSON--GeneratorError-at--api-v2-queue-songs-update_all.png
+
+Nice.
+
+## How
+I normally start like this.
+i create a folder in my rails root, let's call it `frontend`
+that is where I create my front end application with Yeoman.
+I generate my app
+
+grunt has a proxy plugin
+this will proxy calls to a certain endpoint to a host and port of your choice.
+
+So in my case I would set it up to proxy /api/v1 to localhost port 3000
+Any API endpoints will be in my rails app under localhost:3000/api/v1
+
+So it essentially feels like i am in the public directory of my rails app, when I am not.
+
+## I can see the main benefits of this as
+
+### your front end code isn't tied to the backend implementation
+this means that you could swap out rails for sinatra, cowboy, some weird Haskell shit, couchdb endpoints - it doesn't matter.
+
+### Separation of concerns
+You can start to think about your app as separate services. This is essentially the same as the previous point...
+
+### Different team members working on different services
+You can now more easily work as a team and not stomp on the other guy's code
+
+### Should rails really be taking care of this stuff anyway?
+???
+
+### Front end dependencies
+Bower is great. We use rubygems, we should care about our front end code too.
+
+I realize that most of this stuff can be worked around using gems
+- Guard ~ watches for file changes, runs tasks
+- Konacha ~ javascript test runner/framework
+- Bower ~ yeah, we can use bower with rails (if you want to know how, ask me after the talk)
+- Backbone-on-rails, etc. ~ scaffolding for app/assets/javascripts
+
+If anyone wants a demo, I would be happy to show you, just talk to me after the talk.
+
+Thank you
+@mraaroncruz
+http://aaroncruz.com
+http://github.com/pferdefleisch
